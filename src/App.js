@@ -1,29 +1,56 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import { logo } from './assets';
+import { db } from './firebase';
 import Post from './Post';
 
 function App() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    db.collection('posts').onSnapshot(snapshot => {
+      setPosts(
+        snapshot.docs.map(doc => {
+          return {
+            id: doc.id,
+            post: doc.data(),
+          };
+        })
+      );
+    });
+  }, []);
+
   return (
     <div className="app">
-      {/* header */}
       <div className="app-header">
-        <img src={logo} alt="" />
+        <img src={logo} alt="logo" />
       </div>
-
       <h1>Hello</h1>
-
-      <Post
-        username="giannurwana19"
-        caption="This is caption by gian"
-        imageUrl="https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-      />
-      <Post
-        username="zahra"
-        caption="This is caption by gian"
-        imageUrl="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-      />
+      {posts.map(({ post, id }) => (
+        <Post
+          key={id}
+          username={post.username}
+          caption={post.caption}
+          imageUrl={post.imageUrl}
+        />
+      ))}
     </div>
   );
 }
 
 export default App;
+
+// docs
+
+// get data tanpa id
+/*
+    db.collection('posts').onSnapshot(snapshot => {
+      setPosts(
+        snapshot.docs.map(doc => {
+          return doc.data();
+        })
+      );
+    });
+*/
+
+// dalam hal ini kita get data dengan id
