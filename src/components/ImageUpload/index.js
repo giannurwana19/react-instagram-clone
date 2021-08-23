@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { db, storage } from '../../firebase';
 import firebase from 'firebase';
+import './ImageUpload.css';
 
 const ImageUpload = ({ username }) => {
   const [caption, setCaption] = useState('');
@@ -55,8 +56,8 @@ const ImageUpload = ({ username }) => {
   };
 
   return (
-    <div>
-      <progress value={progress} max="100" />
+    <div className="image-upload">
+      <progress className="image-upload-progress" value={progress} max="100" />
       <input
         type="text"
         placeholder="Enter a caption..."
