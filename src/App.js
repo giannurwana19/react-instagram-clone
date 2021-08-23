@@ -150,15 +150,15 @@ function App() {
               imageUrl={post.imageUrl}
             />
           ))}
-
+        </div>
+        <div className="app-post-right">
           {user?.displayName ? (
             <ImageUpload username={user.displayName} />
           ) : (
-            <h1>Sorry you need to login to upload</h1>
+            <h4>Sign to add your post!</h4>
           )}
         </div>
       </div>
-      <div className="app-post-right"></div>
     </div>
   );
 }

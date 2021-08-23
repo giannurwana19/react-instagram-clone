@@ -1,3 +1,13 @@
+# Mini Instagram Clone with ReactJS & Firebase
+
+![Instagram Clone](ig-clone.png "San Juan Mountains")
+
+You Can:
+
+- Sign in & sign up
+- post your image caption
+- add your comment
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
